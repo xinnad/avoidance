@@ -125,6 +125,8 @@ class LocalPlannerNode {
   geometry_msgs::PoseStamped last_pose_;
   geometry_msgs::Point newest_waypoint_position_;
   geometry_msgs::Point last_waypoint_position_;
+  geometry_msgs::Point newest_adapted_waypoint_position_;
+  geometry_msgs::Point last_adapted_waypoint_position_;
   geometry_msgs::PoseStamped goal_msg_;
 
   const ros::Duration pointcloud_timeout_hover_ = ros::Duration(0.4);
@@ -249,6 +251,7 @@ class LocalPlannerNode {
   ros::Publisher marker_pub_;
   ros::Publisher path_actual_pub_;
   ros::Publisher path_waypoint_pub_;
+  ros::Publisher path_adapted_waypoint_pub_;
   ros::Publisher marker_goal_pub_;
   ros::Publisher takeoff_pose_pub_;
   ros::Publisher offboard_pose_pub_;
