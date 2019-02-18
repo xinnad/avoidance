@@ -7,7 +7,7 @@ namespace avoidance {
 class Box {
  public:
   Box();
-  Box(const float& radius);
+  Box(const double& radius);
   ~Box() = default;
 
   /**
@@ -17,7 +17,7 @@ class Box {
   * @param[in] ground_distance, distance to the ground [m]
   **/
   void setBoxLimits(const geometry_msgs::Point& pos,
-                    const float ground_distance);
+                    const double ground_distance);
 
   /**
   * @brief     checks if a pointcloud point is within the bounding box
@@ -26,18 +26,18 @@ class Box {
   * @param[in] z, z-coordinate of the point
   * @returns   true, if the point is within the bounding box
   **/
-  bool isPointWithinBox(const float& x, const float& y, const float& z);
+  bool isPointWithinBox(const double& x, const double& y, const double& z);
 
-  float radius_;
-  float box_dist_to_ground_ = 2.0;
-  float zmin_;
+  double radius_;
+  double box_dist_to_ground_ = 2.0;
+  double zmin_;
 
  private:
-  float xmin_;
-  float xmax_;
-  float ymin_;
-  float ymax_;
-  float zmax_;
+  double xmin_;
+  double xmax_;
+  double ymin_;
+  double ymax_;
+  double zmax_;
 };
 }
 #endif  // BOX_H

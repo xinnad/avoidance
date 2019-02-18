@@ -43,11 +43,11 @@ namespace avoidance {
 **/
 void filterPointCloud(
     pcl::PointCloud<pcl::PointXYZ>& cropped_cloud,
-    Eigen::Vector3f& closest_point, float& distance_to_closest_point,
+    Eigen::Vector3f& closest_point, double& distance_to_closest_point,
     int& counter_backoff,
     const std::vector<pcl::PointCloud<pcl::PointXYZ>>& complete_cloud,
-    int min_cloud_size, float min_dist_backoff, Box histogram_box,
-    const Eigen::Vector3f& position, float min_realsense_dist);
+	double min_cloud_size, double min_dist_backoff, Box histogram_box,
+    const Eigen::Vector3f& position, double min_realsense_dist);
 
 /**
 * @brief      calculates the histogram cells within the Field of View
@@ -154,7 +154,7 @@ void getBestCandidatesFromCostMatrix(
 * @param[] only_yawed, true if the vehicle has only to yaw
 * return   cost of direction (e_angle, z_angle)
 **/
-float costFunction(float e_angle, float z_angle, float obstacle_distance,
+float costFunction(double e_angle, double z_angle, float obstacle_distance,
                    const Eigen::Vector3f& goal, const Eigen::Vector3f& position,
                    const Eigen::Vector3f& last_sent_waypoint,
                    costParameters cost_params, bool only_yawed);
