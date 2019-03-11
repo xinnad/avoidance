@@ -261,14 +261,6 @@ Visualization Manager:
       Value: false
     - Class: rviz/Marker
       Enabled: false
-      Marker Topic: /take_off_pose
-      Name: TakeOff
-      Namespaces:
-        {}
-      Queue Size: 100
-      Value: false
-    - Class: rviz/Marker
-      Enabled: false
       Marker Topic: /original_waypoint
       Name: WpOriginal
       Namespaces:

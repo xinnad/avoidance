@@ -26,7 +26,6 @@ void LocalPlanner::setPose(const Eigen::Vector3f &pos,
   star_planner_->setPose(position_, curr_yaw_);
 
   if (!currently_armed_ && !disable_rise_to_goal_altitude_) {
-    take_off_pose_ = position_;
     reach_altitude_ = false;
   }
 }
@@ -167,7 +166,7 @@ void LocalPlanner::determineStrategy() {
   }
 
   if (!reach_altitude_) {
-    starting_height_ = std::max(goal_.z() - 0.5f, take_off_pose_.z() + 1.0f);
+    starting_height_ = goal_.z() - 0.5f;
     ROS_INFO("\033[1;35m[OA] Reach height (%f) first: Go fast\n \033[0m",
              starting_height_);
     waypoint_type_ = reachHeight;
@@ -517,8 +516,6 @@ avoidanceOutput LocalPlanner::getAvoidanceOutput() {
   out.back_off_point = back_off_point_;
   out.back_off_start_point = back_off_start_point_;
   out.min_dist_backoff = min_dist_backoff_;
-
-  out.take_off_pose = take_off_pose_;
 
   out.costmap_direction_e = costmap_direction_e_;
   out.costmap_direction_z = costmap_direction_z_;

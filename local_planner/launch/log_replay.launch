@@ -41,7 +41,6 @@
        <remap from="/reprojected_points" to="/rosbag/reprojected_points"/>
        <remap from="/selected_marker" to="/rosbag/selected_marker"/>
        <remap from="/smoothed_waypoint" to="/rosbag/smoothed_waypoint"/>
-       <remap from="/take_off_pose" to="/rosbag/take_off_pose"/>
        <remap from="/tree_path" to="/rosbag/tree_path"/>
        <remap from="/goal_position" to="/input/goal_position"/>
     </node>

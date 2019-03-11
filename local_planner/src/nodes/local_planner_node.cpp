@@ -104,8 +104,6 @@ LocalPlannerNode::LocalPlannerNode(const bool tf_spin_thread) {
           "/mavros/companion_process/status", 1);
   current_waypoint_pub_ =
       nh_.advertise<visualization_msgs::Marker>("/current_setpoint", 1);
-  takeoff_pose_pub_ =
-      nh_.advertise<visualization_msgs::Marker>("/take_off_pose", 1);
   initial_height_pub_ =
       nh_.advertise<visualization_msgs::Marker>("/initial_height", 1);
   histogram_image_pub_ =
@@ -376,8 +374,8 @@ void LocalPlannerNode::publishReachHeight() {
   m.header.frame_id = "local_origin";
   m.header.stamp = ros::Time::now();
   m.type = visualization_msgs::Marker::CUBE;
-  m.pose.position.x = local_planner_->take_off_pose_.x();
-  m.pose.position.y = local_planner_->take_off_pose_.y();
+  m.pose.position.x = newest_pose_.pose.position.x;
+  m.pose.position.y = newest_pose_.pose.position.y;
   m.pose.position.z = local_planner_->starting_height_;
   m.pose.orientation.x = 0.0;
   m.pose.orientation.y = 0.0;
@@ -394,23 +392,6 @@ void LocalPlannerNode::publishReachHeight() {
   m.id = 0;
 
   initial_height_pub_.publish(m);
-
-  visualization_msgs::Marker t;
-  t.header.frame_id = "local_origin";
-  t.header.stamp = ros::Time::now();
-  t.type = visualization_msgs::Marker::SPHERE;
-  t.action = visualization_msgs::Marker::ADD;
-  t.scale.x = 0.2;
-  t.scale.y = 0.2;
-  t.scale.z = 0.2;
-  t.color.a = 1.0;
-  t.color.r = 1.0;
-  t.color.g = 0.0;
-  t.color.b = 0.0;
-  t.lifetime = ros::Duration();
-  t.id = 0;
-  t.pose.position = toPoint(local_planner_->take_off_pose_);
-  takeoff_pose_pub_.publish(t);
 }
 
 void LocalPlannerNode::publishBox() {
